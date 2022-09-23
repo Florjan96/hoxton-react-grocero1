@@ -10,7 +10,7 @@ export function Header(){
     </div>
     <button>Add to cart</button>
   </li>
-  
+  <h1></h1>
         </ul>
       </header>
         
