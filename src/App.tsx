@@ -10,6 +10,7 @@ function App() {
       price: 0.52,
       image:'./public/assets/icons/001-beetroot.svg',
       amountInCart: 0,
+      stock:12,
     },
     {
       id: 2,
@@ -17,14 +18,15 @@ function App() {
       image:'./public/assets/icons/002-carrot.svg',
       price: 0.35,
       amountInCart: 10,
+      stock:23,
     },
     {
       id: 3,
       name: "apple",
       image:'./public/assets/icons/003-apple.svg',
-
       price: 0.40,
       amountInCart: 7,
+      stock:23,
     },
     {
       id: 4,
@@ -41,6 +43,10 @@ function App() {
       amountInCart: 0,
     }
   ])
+
+let cartItems=items.filter(item=>item.amountInCart>0)
+console.log(cartItems)
+
 
   return (
     <div className="App">
@@ -65,17 +71,22 @@ function App() {
 
         <div className="cart--item-list-container">
           <ul className="item-list cart--item-list">
-            <li>
-              <img
-                className="cart--item-icon"
-                src="assets/icons/001-beetroot.svg"
-                alt="beetroot"
-              />
-              <p>beetroot</p>
-              <button className="quantity-btn remove-btn center">-</button>
-              <span className="quantity-text center">1</span>
-              <button className="quantity-btn add-btn center">+</button>
-            </li>
+
+            {cartItems.map(cartItem=>(
+ <li>
+ <img
+   className="cart--item-icon"
+   src={cartItem.image}
+   alt="beetroot"
+ />
+ <p>{cartItem.name}</p>
+ <button className="quantity-btn remove-btn center">-</button>
+ <span className="quantity-text center">{cartItem.amountInCart}</span>
+ <button className="quantity-btn add-btn center">+</button>
+</li>
+
+            ))}
+           
           </ul>
         </div>
 
