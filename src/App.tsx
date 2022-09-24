@@ -3,47 +3,60 @@ import "./App.css";
 
 
 function App() {
-  const [items, setitems] = useState([
+  const [items, setItems] = useState([
     {
       id: 1,
-      sender: `Zoom`,
-      title: `Cloud Recording - Nicolas Marcora's Personal Meeting Room is now available`,
-      starred: false,
-      read: true
+      name: "beetroot",
+      price: 0.52,
+      image:'./public/assets/icons/001-beetroot.svg',
+      amountInCart: 0,
     },
     {
       id: 2,
-      sender: `Zoom`,
-      title: `Kushtrim has joined your Personal Meeting Room`,
-      starred: false,
-      read: false
+      name: "carrot",
+      image:'./public/assets/icons/002-carrot.svg',
+      price: 0.35,
+      amountInCart: 10,
     },
     {
       id: 3,
-      sender: `Notion`,
-      title: `1 update in Hoxton`,
-      starred: true,
-      read: true
+      name: "apple",
+      image:'./public/assets/icons/003-apple.svg',
+
+      price: 0.40,
+      amountInCart: 7,
     },
     {
       id: 4,
-      sender: `The Calendly Team`,
-      title: `Use more than one calendar?`,
-      starred: false,
-      read: false
-    }])
+      name: "apricot",
+      image:'./public/assets/icons/004-apricot.svg',
+      price: 0.61,
+      amountInCart: 5,
+    },
+    {
+      id: 5,
+      name: "avocado",
+      image:'./public/assets/icons/005-avocado.svg',
+      price: 1.45,
+      amountInCart: 0,
+    }
+  ])
 
   return (
     <div className="App">
       <header id="store">
         <h1>Grocero</h1>
         <ul className="item-list store--item-list">
-          <li>
-            <div className="store--item-icon">
-              <img src="assets/icons/001-beetroot.svg" alt="beetroot" />
-            </div>
-            <button>Add to cart</button>
-          </li>
+
+          {items.map(item=>(
+  <li>
+  <div className="store--item-icon">
+    <img src={item.image} alt="beetroot" />
+  </div>
+  <button>Add to cart</button>
+</li>
+          ))}
+        
         </ul>
       </header>
 
