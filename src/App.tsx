@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import { Store } from "./components/Store";
+import { Card } from "./components/Card";
 
 function App() {
   const [items, setItems] = useState([
@@ -63,73 +65,14 @@ function App() {
 
   return (
     <div className="App">
-      <header id="store">
-        <h1>Grocero</h1>
-        <ul className="item-list store--item-list">
-          {items.map((item) => (
-            <li>
-              <div className="store--item-icon">
-                <img src={item.image} alt="beetroot" />
-              </div>
-              <button
-                onClick={function () {
-                  increase(item);
-                }}
-              >
-                Add to cart({item.stock})
-              </button>
-            </li>
-          ))}
-        </ul>
-      </header>
+      <Store items={items} increase={increase} />
 
-      <main id="cart">
-        <h2>Your Cart</h2>
-
-        <div className="cart--item-list-container">
-          <ul className="item-list cart--item-list">
-            {cartItems.map((cartItem) => (
-              <li>
-                <img
-                  className="cart--item-icon"
-                  src={cartItem.image}
-                  alt="beetroot"
-                />
-                <p>{cartItem.name}</p>
-                <button
-                  className="quantity-btn remove-btn center"
-                  onClick={function () {
-                    decrease(cartItem);
-                  }}
-                >
-                  -
-                </button>
-                <span className="quantity-text center">
-                  {cartItem.amountInCart}
-                </span>
-                <button
-                  className="quantity-btn add-btn center"
-                  onClick={function () {
-                    increase(cartItem);
-                  }}
-                >
-                  +
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="total-section">
-          <div>
-            <h3>Total</h3>
-          </div>
-
-          <div>
-            <span className="total-number">${getTotal().toFixed(2)}</span>
-          </div>
-        </div>
-      </main>
+      <Card
+        cartItems={cartItems}
+        decrease={decrease}
+        increase={increase}
+        getTotal={getTotal}
+      />
     </div>
   );
 }
